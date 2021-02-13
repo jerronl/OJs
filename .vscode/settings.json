@@ -1,0 +1,6 @@
+{
+    "C_Cpp.default.compilerPath": "c:\\Users\\jerron\\.vscode\\extensions\\bartmanabyss.amiga-debug-1.0.0\\bin\\opt\\bin\\m68k-amiga-elf-gcc.exe",
+    "files.associations": {
+        "xstring": "cpp"
+    }
+}

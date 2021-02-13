@@ -1,2 +1,6 @@
 build/
 Debug/
+/.metadata/
+*.exe
+*.o
+*.d

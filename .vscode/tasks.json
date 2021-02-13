@@ -6,6 +6,7 @@
 			"label": "C/C++: g++.exe build active file",
 			"command": "\"${config:task.gccpath}/g++.exe\"",
 			"args": [
+				"-Wall",
 				"-g",
 				"${file}",
 				"-o",
