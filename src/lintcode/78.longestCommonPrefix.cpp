@@ -14,18 +14,15 @@ public:
      * @return: The longest common prefix
      */
     string longestCommonPrefix(const vector<string> &strs) {
-        auto n=strs.size();
-        vector<decltype(strs.front().c_str())> ps(n);
-        for(auto i=0u;i<n;++i)
-            ps[i]=strs[i].c_str();
-        for(;n>1;++ps[0])
-            for(auto i=1u;i<n;++i)
-                if(*(ps[i]++)!=*ps[0])
-                    return strs.front().substr(0,ps[0]-strs.front().c_str());
-        return n?strs.front():"";
+        if(!strs.size())
+            return "";
+        for(auto len=0;len<strs.front().length();++len)
+            for(auto i=1u;i<strs.size();++i)
+                if(strs[i][len]!=strs.front()[len])
+                    return strs.front().substr(0,len);
+        return strs.front();
     }
 };
-
 int main(){
     Solution s;
     vector<pair<vector<string>,string>> tests{

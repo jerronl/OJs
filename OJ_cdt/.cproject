@@ -43,7 +43,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="src/lintcode/79.longestCommonSubstring.cpp|src/lintcode/55.CompareStrings.cpp|src/lintcode/158.ValidAnagram.cpp|src/lintcode/13.ImplementstrStr.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="src/lintcode/139.subarraySumClosest.cpp|src/lintcode/6.mergeSortedArray.cpp|src/lintcode/58.fourSum.cpp|src/lintcode/31.partitionArray.cpp|src/lintcode/57.threeSum.cpp|src/lintcode/59.threeSumClosest.cpp|src/lintcode/189.firstMissingPositive.cpp|src/lintcode/50.productExcludeItself.cpp|src/lintcode/56.twoSum.cpp|src/lintcode/64.mergeSortedArray.cpp|src/lintcode/172.removeElement.cpp|src/lintcode/100.removeDuplicates.cpp|src/lintcode/138.subarraySum.cpp|src/lintcode/54.atoi.cpp|src/lintcode/78.longestCommonPrefix.cpp|src/lintcode/79.longestCommonSubstring.cpp|src/lintcode/55.CompareStrings.cpp|src/lintcode/158.ValidAnagram.cpp|src/lintcode/13.ImplementstrStr.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -91,7 +91,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="src/lintcode/79.longestCommonSubstring.cpp|src/lintcode/55.CompareStrings.cpp|src/lintcode/158.ValidAnagram.cpp|src/lintcode/13.ImplementstrStr.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="src/lintcode/139.subarraySumClosest.cpp|src/lintcode/6.mergeSortedArray.cpp|src/lintcode/58.fourSum.cpp|src/lintcode/31.partitionArray.cpp|src/lintcode/57.threeSum.cpp|src/lintcode/59.threeSumClosest.cpp|src/lintcode/189.firstMissingPositive.cpp|src/lintcode/50.productExcludeItself.cpp|src/lintcode/56.twoSum.cpp|src/lintcode/64.mergeSortedArray.cpp|src/lintcode/172.removeElement.cpp|src/lintcode/100.removeDuplicates.cpp|src/lintcode/138.subarraySum.cpp|src/lintcode/54.atoi.cpp|src/lintcode/78.longestCommonPrefix.cpp|src/lintcode/79.longestCommonSubstring.cpp|src/lintcode/55.CompareStrings.cpp|src/lintcode/158.ValidAnagram.cpp|src/lintcode/13.ImplementstrStr.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

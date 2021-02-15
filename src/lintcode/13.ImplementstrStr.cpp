@@ -48,7 +48,7 @@ int main(){
     };
     for(auto test:tests)
         if ((test.first.find(test.second)!=(size_t)s.strStr(test.first,test.second))){
-            cout<<"FAILED!";
+            cout<<"FAILED!"<<test<<test.first.find(test.second)<<s.strStr(test.first,test.second)<<endl;
             return 0;
         }
     
