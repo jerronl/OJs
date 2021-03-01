@@ -1,5 +1,5 @@
 /*
- * 55. Compare Strings.cpp
+ * 55. strStr.cpp
  *
  *      Author: jerron
  *      https://www.lintcode.com/problem/55
@@ -37,6 +37,7 @@ public:
         return -1;
     }
 };
+
 int main(){
     Solution s;
     vector<pair<string,string>> tests={
