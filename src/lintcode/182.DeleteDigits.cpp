@@ -3,18 +3,8 @@
  *
  *  Created on: Mar 9, 2021
  *      Author: jerron
- */
-
-
-
-
-/*
- * 184.largestNumber.cpp
- *
- *  Created on: Mar 8, 2021
- *      Author: jerron
- *      https://www.lintcode.com/problem/184
- *     Given a list of non negative integers, arrange them such that they form the largest number.
+ *      https://www.lintcode.com/problem/182
+ *     Given string A representing a positive integer which has N digits, remove any k digits of the number, the remaining digits are arranged according to the original order to become a new positive integer.
  *      */
 
 #include "../utils/utils.h"

@@ -53,11 +53,23 @@ public:
 	}
 	ListNode(const initializer_list<int> &l) :
 			val(*l.begin()), next(nullptr) {
-		auto prev = &next;
+		if(l.size()<1)
+		    val=INT_MAX;
+	    auto prev = &next;
 		for (auto i = l.begin(); ++i != l.end(); prev = &(*prev)->next)
 			*prev = new ListNode(*i);
 	}
+	static ListNode* buildList(const initializer_list<int> &l){
+		ListNode* h=nullptr,**p=&h;
+		for(auto n:l){
+			*p=new ListNode(n);
+			p=&(*p)->next;
+		}
+		return h;
+	}
 	bool del() {
+		if(!this)
+			return false;
 		if (val == INT_MIN) {
 			LOGGER("Probably trying to delete pointer already deleted!!!!!"<<endl);
 			return false;
@@ -68,13 +80,10 @@ public:
 		return true;
 	}
 };
-inline void assertl(ListNode *l1, ListNode *l2) {
-	if (l1) {
-		assert(l2);
-		assert(l1->val == l2->val);
-		assertl(l1->next, l2->next);
-	} else
-		assert(!l2);
+bool assertl(ListNode *l1, ListNode *l2) {
+		return l1==l2||
+			!l1&&l2&&l2->val==INT_MIN||
+			l1&&l2&&(l2&&l1->val == l2->val&&assertl(l1->next, l2->next));
 }
 
 class RandomListNode {
@@ -87,16 +96,16 @@ public:
 	explicit RandomListNode(int val) :
 			label(val), next(nullptr), random(nullptr) {
 	}
-	RandomListNode(const initializer_list<int> &l1,
-			const initializer_list<int> &l2) :
-			label(*l1.begin()), next(nullptr), random(nullptr) {
+	RandomListNode(const pair<const vector<int>,
+			const vector<int>>l1) :
+			label(*l1.first.begin()), next(nullptr), random(nullptr) {
 		map<int, RandomListNode*> M { { label, this } };
 		auto head = this;
-		for (auto i = l1.begin(); ++i != l1.end();) {
+		for (auto i = l1.first.begin(); ++i != l1.first.end();) {
 			head->next = new RandomListNode(*i);
 			M[*i] = head = head->next;
 		}
-		auto i = l2.begin();
+		auto i = l1.second.begin();
 		for (head = this; head; head = head->next, ++i)
 			if (M.count(*i))
 				head->random = M[*i];
@@ -112,17 +121,16 @@ public:
 		return true;
 	}
 };
-inline void assertr(RandomListNode *l1, RandomListNode *l2) {
+inline bool assertr(RandomListNode *l1, RandomListNode *l2) {
 	if (l1) {
-		assert(l2);
-		assert(l1->label == l2->label);
-		if (l1->random)
-			assert(l2->random && l1->random->label == l2->random->label);
-		else
-			assert(!l2->random);
+		return l2 &&
+		(l1->label == l2->label) &&
+		((l1->random) ?
+			(l2->random && l1->random->label == l2->random->label):
+			(!l2->random)) &&
 		assertr(l1->next, l2->next);
 	} else
-		assert(!l2);
+		return !l2;
 }
 class Interval {
 public:
@@ -216,6 +224,23 @@ ostream& operator<<(ostream &os, const vector<T> &source) {
 template<class T1, class T2>
 ostream& operator<<(ostream &os, const pair<T1, T2> &source) {
 	return os << "{ " << source.first << " , " << source.second << " }\n";
+}
+ostream& operator<<(ostream &os, const ListNode &source) {
+    os<<source.val<<"->";
+    if (source.next)
+        return os<<*source.next;
+    return os<<"null";
+}
+ostream& operator<<(ostream &os, const RandomListNode &source) {
+    os<<source.label<<"("<<(source.random?to_string(source.random->label):"nul")<<")->";
+    if (source.next)
+        return os<<*source.next;
+    return os<<"null";
+}
+ostream& operator<<(ostream &os, const ListNode* source) {
+    if(source)
+		return os<<*source;
+	return os<<"null";
 }
 
 template<class T>
