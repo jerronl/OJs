@@ -163,16 +163,27 @@ public:
 				Q.push_back(&(*next)->right);
 			}
 	}
-	;
-	static bool isBST(TreeNode *root, long long lo = (long long) INT_MIN - 1,
-			long long hi = (long long) INT_MAX + 1) {
-		return !root
-				|| (root->val < hi && root->val > lo
-						&& isBST(root->right, max(lo, (long long) root->val),
-								hi)
-						&& isBST(root->left, lo, min(hi, (long long) root->val)));
-	}
-	;
+	static TreeNode* buildTree(const initializer_list<int> &l){
+		TreeNode* h=nullptr,**p=&h;
+		list<TreeNode**> Q{p};
+		for(auto n:l)
+			if (n > INT_MIN) {
+				auto next = Q.front();
+				*next = new TreeNode(n);
+				Q.push_back(&(*next)->left);
+				Q.push_back(&(*next)->right);
+		}
+		return h;
+	}	
+	static bool isBST(TreeNode * root) {
+        function<bool(TreeNode*,TreeNode*,TreeNode*)>isB=[&isB](TreeNode* r, TreeNode* lo, TreeNode* hi)->bool{
+        return !r||
+            (!lo||r->val>lo->val)&&
+            (!hi||r->val<hi->val)&&
+            isB(r->left,lo,r)&&isB(r->right,r,hi);            
+        };
+        return isB(root,nullptr,nullptr);
+    }
 	TreeNode* find(int v) {
 		if (val == v)
 			return this;
@@ -194,14 +205,10 @@ public:
 		return true;
 	}
 };
-inline void assertt(TreeNode *l1, TreeNode *l2) {
-	if (l1) {
-		assert(l2);
-		assert(l1->val == l2->val);
-		assertt(l1->left, l2->left);
-		assertt(l1->right, l2->right);
-	} else
-		assert(!l2);
+inline bool assertt(TreeNode *l1, TreeNode *l2) {
+	return l1==l2 || l1&& l2 && l1->val == l2->val && 
+			assertt(l1->left, l2->left) &&
+			assertt(l1->right, l2->right);	
 }
 
 template<class T>
@@ -230,6 +237,19 @@ ostream& operator<<(ostream &os, const ListNode &source) {
     if (source.next)
         return os<<*source.next;
     return os<<"null";
+}
+ostream& operator<<(ostream &os, const TreeNode &source) {
+    os<<source.val<<"<";
+    if (source.left)
+        os<<*source.left;
+	else
+		os<<"#";
+	os<<",";
+    if (source.right)
+        os<<*source.right;
+	else
+		os<<"#";	
+    return os<<">";
 }
 ostream& operator<<(ostream &os, const RandomListNode &source) {
     os<<source.label<<"("<<(source.random?to_string(source.random->label):"nul")<<")->";
