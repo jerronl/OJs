@@ -82,8 +82,8 @@ public:
 };
 bool assertl(ListNode *l1, ListNode *l2) {
 		return l1==l2||
-			!l1&&l2&&l2->val==INT_MIN||
-			l1&&l2&&(l2&&l1->val == l2->val&&assertl(l1->next, l2->next));
+			(!l1&&l2&&l2->val==INT_MIN)||
+			(l1&&l2&&(l2&&l1->val == l2->val&&assertl(l1->next, l2->next)));
 }
 
 class RandomListNode {
@@ -178,9 +178,9 @@ public:
 	static bool isBST(TreeNode * root) {
         function<bool(TreeNode*,TreeNode*,TreeNode*)>isB=[&isB](TreeNode* r, TreeNode* lo, TreeNode* hi)->bool{
         return !r||
-            (!lo||r->val>lo->val)&&
+            ((!lo||r->val>lo->val)&&
             (!hi||r->val<hi->val)&&
-            isB(r->left,lo,r)&&isB(r->right,r,hi);            
+            isB(r->left,lo,r)&&isB(r->right,r,hi));            
         };
         return isB(root,nullptr,nullptr);
     }
@@ -206,10 +206,51 @@ public:
 	}
 };
 inline bool assertt(TreeNode *l1, TreeNode *l2) {
-	return l1==l2 || l1&& l2 && l1->val == l2->val && 
+	return l1==l2 || (l1&& l2 && l1->val == l2->val && 
 			assertt(l1->left, l2->left) &&
-			assertt(l1->right, l2->right);	
+			assertt(l1->right, l2->right));	
 }
+
+struct DirectedGraphNode {
+    int label;
+    vector<DirectedGraphNode *> neighbors;
+    DirectedGraphNode(int x) : label(x) {};
+	static vector<DirectedGraphNode*> makeGraph(const string& initS){
+		stringstream s(initS);
+		unordered_map<int,DirectedGraphNode*> M;
+		vector<DirectedGraphNode*> result;
+		int index=-1,tmp;
+		char c;
+		DirectedGraphNode *cur;
+		while(!s.eof())
+			switch (s.peek()){
+				case '0':
+				case '1':
+				case '2':
+				case '3':
+				case '4':
+				case '5':
+				case '6':
+				case '7':
+				case '8':
+				case '9':
+					s>>tmp;
+					if(!M.count(tmp))
+						result.push_back( M[tmp]=new DirectedGraphNode(tmp));
+					if(!++index)
+						cur=M[tmp];
+					else
+						cur->neighbors.push_back(M[tmp]);
+					break;
+				default:
+					s>>c;
+					if(c!=',')
+						index=-1;
+					break;
+		}
+		return result;
+	}
+};
 
 template<class T>
 void enumerate(T &&dfs) {
@@ -222,6 +263,14 @@ using intVec=vector<int>;
 
 template<class T>
 ostream& operator<<(ostream &os, const vector<T> &source) {
+	os << '[';
+	for (auto i : source)
+		os << i << " ";
+	return os << "]\n";
+}
+
+template<class T>
+ostream& operator<<(ostream &os, const unordered_set<T> &source) {
 	os << '[';
 	for (auto i : source)
 		os << i << " ";
@@ -262,7 +311,15 @@ ostream& operator<<(ostream &os, const ListNode* source) {
 		return os<<*source;
 	return os<<"null";
 }
-
+ostream& operator<<(ostream &os, const vector<DirectedGraphNode*> source) {
+    os<<"{";
+	for(auto s:source){
+		os<<'#'<<s->label;
+		for(auto n:s->neighbors)
+			os<<','<<n->label;
+	}
+	return os<<'}';
+}
 template<class T>
 bool operator==(const vector<T> &lh, const vector<T> &rh) {
 	if (lh.size() != rh.size())
@@ -292,5 +349,6 @@ void del(vector<T*> v) {
 	for (auto i : v)
 		i->del();
 }
+
 
 #endif /* UTIL_H_ */

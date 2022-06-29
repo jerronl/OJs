@@ -19,9 +19,9 @@ public:
     bool isValidBST(TreeNode * root) {
         function<bool(TreeNode*,TreeNode*,TreeNode*)>isB=[&isB](TreeNode* r, TreeNode* lo, TreeNode* hi)->bool{
         return !r||
-            (!lo||r->val>lo->val)&&
+            ((!lo||r->val>lo->val)&&
             (!hi||r->val<hi->val)&&
-            isB(r->left,lo,r)&&isB(r->right,r,hi);            
+            isB(r->left,lo,r)&&isB(r->right,r,hi));
         };
         return isB(root,nullptr,nullptr);
     }

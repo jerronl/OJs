@@ -20,12 +20,12 @@ public:
     vector<vector<int>> combinationSum(vector<int> &candidates, int target) {
         sort(candidates.begin(),candidates.end(),greater<int>());
         function<vector<vector<int>>(int,int)> cs=[&cs,&candidates](int target,int i)->vector<vector<int>>{
-            if(i>=candidates.size()||target<0)
+            if(i>=(int)candidates.size()||target<0)
                 return {};
             if(target==0)
                 return {{}};
             auto R=cs(target,i+1);
-            if(i+1>=candidates.size()||candidates[i+1]!=candidates[i]){
+            if(i+1>=(int)candidates.size()||candidates[i+1]!=candidates[i]){
                 auto R2=cs(target-candidates[i],i);
                 for(auto r:R2){
                     r.push_back(candidates[i]);
@@ -41,10 +41,10 @@ public:
 int main(){
     Solution s;
     vector<pair<pair<vector<int>,int>,vector<vector<int>>>> tests={
-        {{{2,2},4},{{2,2}}},        
+        {{{2},4},{{2,2}}},        
         {{{2,3,6,7},7},{{7},{2,2,3}}},
         {{{3,8},13},{}},
-        {{{2,2,3,6,7},7},{{7},{2,2,3}}},
+        {{{2,3,6,7},7},{{7},{2,2,3}}},
         {{{3,8},0},{{}}},
         {{{1},3},{{1,1,1}}}
     };
