@@ -4,3 +4,6 @@ Debug/
 *.exe
 *.o
 *.d
+.vscode/
+eclipse_cdt/
+.vs/
