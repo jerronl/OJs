@@ -4,18 +4,19 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+   
         {
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/Debug/${relativeFileDirname}/${fileBasenameNoExtension}.exe",
+            "program": "${workspaceFolder}/Debug/${fileBasenameNoExtension}.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/IO/${relativeFileDirname}/",
             "environment": [],
             "console": "externalTerminal",
             "MIMode": "gdb",
-            "miDebuggerPath": "${config:task.gccpath}/gdb.exe",
+            "miDebuggerPath": "D:/Program Files/mingw-w64/msys2/mingw64/bin/gdb.exe",
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",

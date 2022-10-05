@@ -1,14 +1,8 @@
 {
-    "C_Cpp.default.compilerPath": "c:\\Users\\jerron\\.vscode\\extensions\\bartmanabyss.amiga-debug-1.0.0\\bin\\opt\\bin\\m68k-amiga-elf-gcc.exe",
     "files.associations": {
-        "xstring": "cpp",
-        "xiosbase": "cpp",
         "vector": "cpp",
         "utility": "cpp",
-        "list": "cpp",
-        "iosfwd": "cpp",
-        "initializer_list": "cpp",
-        "ostream": "cpp",
-        "xutility": "cpp"
+        "xstring": "cpp",
+        "queue": "cpp"
     }
 }
