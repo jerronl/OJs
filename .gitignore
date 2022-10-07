@@ -7,3 +7,4 @@ Debug/
 .vscode/
 eclipse_cdt/
 .vs/
+.cache/clangd/index/helloworld.cpp.5465905B3FEB4460.idx
