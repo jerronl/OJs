@@ -15,8 +15,8 @@ public:
      * @return: if string A contains all of the characters in B return true else return false
      */
     bool compareStrings(const string &A,const string &B) {
-        vector<int> v('z'-'a'+1,0);
-        for(auto c:a)
+        vector<int> v('Z'-'A'+1,0);
+        for(auto c:A)
             v[c-'A']++;
         for(auto c:b)
             if(!(v[c-'A']--))
