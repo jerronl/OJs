@@ -1,3 +1,9 @@
+/*
+* 55.Compare-Strings.cpp
+* Author:jerron
+* https://lintcode.com/problem/55
+* Compare two strings A and B, determine whether A contains all characters in B
+*/
 #include "util.h"
 class Solution {
 public:
@@ -8,7 +14,7 @@ public:
    * return false
    */
   bool compareStrings(const string &A, const string &B) {
-    vector<int> S('Z'-'A'+1, 0);//MAIN CHANGE
+    vector<int> S('Z'-'A'+1, 0);
     for (auto c : A)
       ++S[c - 'A'];
     for (auto c : B)
@@ -20,22 +26,21 @@ public:
 
 int main() {
   Solution s;
-  vector<pair<vector<string>, vector<int>>> tests = {
-      {{"abab", "aa"}, {1}},
-      {{"A", "B"}, {0}},
-      {{"AZ", "AZ"}, {1}},//FAILED CASE ON UNEDITED VERSION
-      {{"AZ", "BZ"}, {0}},
-      {{"PQRTZ","RSTUV"},{0}}
+  vector<pair<vector<string>, bool>> tests = {
+      {{"abab", "aa"}, 1},
+      {{"A", "B"}, 0},
+      {{"AZ", "AZ"}, 1},
+      {{"AZ", "BZ"}, 0},
+      {{"PQRTZ","RSTUV"},0}
 
   };
   for (auto test : tests) {
     auto tmp = test.first;
-    if (s.compareStrings(tmp[0], tmp[1]) != test.second[0]) {
+    if (s.compareStrings(tmp[0], tmp[1]) != test.second) {
       cout << "FAILED!" << endl;
       return 0;
     }
   }
-   //BETTER TESTCASES
   cout << "SUCCEED!";
   return 0;
 }
